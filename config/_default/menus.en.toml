@@ -49,7 +49,7 @@ url = "404/"
 
 # footer menu
 [[footer]]
-name = "About"
+name = "About Footer"
 url = "about/"
 weight = 1
 
