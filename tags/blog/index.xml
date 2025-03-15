@@ -1,0 +1,11 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Doctopus – Blog</title><link>https://doctopus.github.io/tags/blog/</link><description>Recent content in Blog on Doctopus</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 15 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://doctopus.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Hello World</title><link>https://doctopus.github.io/blog/hello-world/</link><pubDate>Sat, 15 Mar 2025 00:00:00 +0000</pubDate><guid>https://doctopus.github.io/blog/hello-world/</guid><description>
+&lt;h1>Hello World&lt;/h1>&lt;p>This is my first blog post using Hugo with the Hextra theme. I’m excited to share my thoughts and ideas here.&lt;/p>
+&lt;h2>What to Expect&lt;span class="hx-absolute -hx-mt-20" id="what-to-expect">&lt;/span>
+&lt;a href="#what-to-expect" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>In this blog, I’ll be writing about:&lt;/p>
+&lt;ul>
+&lt;li>Technology and programming&lt;/li>
+&lt;li>Personal projects&lt;/li>
+&lt;li>Interesting discoveries&lt;/li>
+&lt;li>And much more!&lt;/li>
+&lt;/ul>
+&lt;p>Stay tuned for more content coming soon.&lt;/p></description></item></channel></rss>
