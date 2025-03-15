@@ -23,30 +23,7 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: '1.24.0'
-          cache: false  # Disable automatic caching
-      
-      # Optional: Set up manual caching if desired
-      - name: Cache Go modules
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cache/go-build
-            ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
-      
-      - name: Display Go info
-        run: |
-          go version
-          echo "GOPATH: $GOPATH"
-          echo "GOROOT: $GOROOT"
-      
-      - name: Handle Go dependencies
-        run: |
-          cat go.mod || echo "go.mod not found"
-          cat go.sum || echo "go.sum not found"
-          go mod tidy
+          cache: false
       
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -63,5 +40,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          publish_branch: gh-pages
+          publish_branch: publish  # Changed from gh-pages to publish
           force_orphan: true
