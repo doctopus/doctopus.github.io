@@ -1,6 +1,6 @@
 {
   "baseURL": "https://doctopus.github.io/",
-  "title": "Your Blog Title",
+  "title": "Doctopus",
   "theme": "github.com/imfing/hextra",
   
   "module": {
@@ -17,7 +17,7 @@
       "logo": {
         "path": ""
       },
-      "title": "Your Blog Title"
+      "title": "Doctopus"
     },
     "footer": {
       "enable": true,
