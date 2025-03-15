@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: false  # We're using Hugo modules, not submodules
+          submodules: false
           fetch-depth: 0
       
       - name: Setup Hugo
@@ -22,22 +22,35 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
-          go-version: '1.20'
+          go-version: '1.24.0'  # Updated to match your local version (using 1.24.0 as 1.24.1 might not be available in Actions)
+      
+      # Display Go info for debugging
+      - name: Display Go info
+        run: |
+          go version
+          echo "GOPATH: $GOPATH"
+          echo "GOROOT: $GOROOT"
+      
+      # Handle Go dependencies
+      - name: Handle Go dependencies
+        run: |
+          cat go.mod
+          go mod tidy
       
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          
+      
       - name: Build
         run: |
+          hugo mod get
           hugo --minify
       
-      # Direct publishing without using upload-artifact action
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           publish_branch: gh-pages
-          force_orphan: true  # This creates a new history for the gh-pages branch
+          force_orphan: true
