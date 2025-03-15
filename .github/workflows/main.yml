@@ -22,19 +22,30 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
-          go-version: '1.24.0'  # Updated to match your local version (using 1.24.0 as 1.24.1 might not be available in Actions)
+          go-version: '1.24.0'
+          cache: false  # Disable automatic caching
       
-      # Display Go info for debugging
+      # Optional: Set up manual caching if desired
+      - name: Cache Go modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+      
       - name: Display Go info
         run: |
           go version
           echo "GOPATH: $GOPATH"
           echo "GOROOT: $GOROOT"
       
-      # Handle Go dependencies
       - name: Handle Go dependencies
         run: |
-          cat go.mod
+          cat go.mod || echo "go.mod not found"
+          cat go.sum || echo "go.sum not found"
           go mod tidy
       
       - name: Setup Node
