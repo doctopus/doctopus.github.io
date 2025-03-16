@@ -1,0 +1,195 @@
+---
+title: "Hugo Blog Maintenance Workflow"
+description: "Upkeep of Blog"
+banner: "/images/sample-blog.jpeg"
+tags: ["Hugo", "Blog"]
+date: 2025-03-15
+---
+# Hugo Blog Maintenance Workflow
+
+This document outlines the workflow for updating and maintaining your Hugo blog with the Hextra theme.
+
+## Local Development Workflow
+
+### Setting Up Local Environment
+
+1. **Clone the repository** (only needed once or on a new machine):
+   ```bash
+   git clone git@github.com:doctopus/doctopus.github.io.git
+   cd doctopus.github.io
+   ```
+
+2. **Update dependencies** whenever needed:
+   ```bash
+   hugo mod get -u  # Update all Hugo modules
+   hugo mod tidy    # Clean up unused dependencies
+   ```
+
+### Creating Content
+
+1. **Create a new blog post**:
+   ```bash
+   hugo new blog/my-new-post.md
+   ```
+
+2. **Create a new documentation page**:
+   ```bash
+   hugo new docs/new-section/new-page.md
+   ```
+
+3. **Edit content** using your preferred text editor or IDE.
+
+### Testing Changes Locally
+
+1. **Start the Hugo development server**:
+   ```bash
+   hugo server -D
+   ```
+
+2. **Preview your site** at http://localhost:1313/
+
+3. **Live editing**: Changes you make to content files will automatically refresh in the browser.
+
+## Deployment Workflow
+
+### Committing Changes
+
+1. **Add your changes to git**:
+   ```bash
+   git add .
+   ```
+
+2. **Commit with a meaningful message**:
+   ```bash
+   git commit -m "Add new blog post about XYZ"
+   ```
+
+3. **Push to GitHub**:
+   ```bash
+   git push origin master
+   ```
+
+### Automatic Deployment
+
+Once changes are pushed to the `master` branch:
+
+1. GitHub Actions will automatically start the build workflow
+2. Hugo will build your site
+3. The built site will be deployed to the `publish` branch
+4. GitHub Pages will serve the content from this branch
+
+You can monitor the deployment process in the "Actions" tab of your GitHub repository.
+
+## Theme Customization
+
+### Configuration Changes
+
+1. **Edit your configuration file** (`hugo.yaml`) to change site-wide settings:
+   ```bash
+   nano hugo.yaml  # Or use any text editor
+   ```
+
+2. **Common customizations**:
+   - Site title and description
+   - Navigation menu items
+   - Footer content
+   - Theme colors
+
+3. **Test locally** before pushing changes:
+   ```bash
+   hugo server
+   ```
+
+### Custom Styling
+
+1. **Create/edit custom CSS**:
+   ```bash
+   mkdir -p assets/css  # If directory doesn't exist
+   nano assets/css/custom.css
+   ```
+
+2. **Override theme templates** when needed:
+   ```bash
+   # Example: copy and modify a theme partial
+   mkdir -p layouts/partials
+   cp themes/github.com/imfing/hextra/layouts/partials/navbar.html layouts/partials/
+   # Edit the copy in layouts/partials/navbar.html
+   ```
+
+## Content Organization
+
+### Blog Posts
+
+- Store in `content/blog/`
+- Include frontmatter with:
+  ```yaml
+  ---
+  title: "My Post Title"
+  date: 2025-03-15
+  tags: ["tag1", "tag2"]
+  ---
+  ```
+
+### Documentation Pages
+
+- Store in `content/docs/`
+- Organize with `_index.md` files in each directory
+- Control ordering with `weight` parameter in frontmatter:
+  ```yaml
+  ---
+  title: "Documentation Section"
+  weight: 1
+  ---
+  ```
+
+## Updating Hugo and Theme
+
+### Update Hugo
+
+```bash
+# Update Hugo on your system
+# For macOS with Homebrew:
+brew update && brew upgrade hugo
+```
+
+### Update Hextra Theme
+
+```bash
+# Update the theme module
+hugo mod get -u github.com/imfing/hextra
+hugo mod tidy
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Build errors**:
+   - Check the error messages in your terminal
+   - Ensure all referenced files (images, shortcodes) exist
+   - Validate your YAML/frontmatter syntax
+
+2. **Deployment issues**:
+   - Check GitHub Actions logs for errors
+   - Verify GitHub Pages settings are correct (Settings > Pages)
+   - Ensure the GitHub token has proper permissions
+
+3. **Local preview issues**:
+   - Clear the Hugo cache: `hugo --gc --cleanDestinationDir`
+   - Remove module cache: `hugo mod clean`
+   - Restart the Hugo server
+
+## Regular Maintenance
+
+1. **Periodically update dependencies**:
+   ```bash
+   hugo mod get -u
+   ```
+
+2. **Check for theme updates** on the [Hextra GitHub repository](https://github.com/imfing/hextra)
+
+3. **Review and update content** to keep information fresh
+
+4. **Monitor GitHub Actions** for any build failures
+
+By following this workflow, you'll be able to maintain your Hugo blog efficiently while leveraging GitHub's automation to handle deployments.

@@ -1,0 +1,9 @@
+:root {
+    /* --primary-hue: 240;  Adjust the primary color hue */
+    --primary-saturation: 100%;  /* Adjust saturation */
+  }
+  
+  /* Add any custom CSS rules */
+  .my-custom-class {
+    /* your styles */
+  }
